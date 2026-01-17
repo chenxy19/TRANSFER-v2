@@ -141,5 +141,11 @@ EXCLUDE_CELLS = [
     "endometrium smooth muscle cells",
     "esophagus basal squamous epithelial cells",
     "eye bipolar cells",
+    "tongue basal keratinocytes",
+    "small intestine paneth cells",
+    "salivary gland mucus glandular cells",
+    "prostate club cells",
+    "placenta fibroblasts",
+    "pancreas pancreatic endocrine cells",
 ]
 

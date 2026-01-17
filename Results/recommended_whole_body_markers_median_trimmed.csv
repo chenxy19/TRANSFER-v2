@@ -65,15 +65,12 @@ ovary oocytes,"['ZP4', 'ADCY9', 'MGAT5B', 'CHRNA3', 'CACNA2D2', 'ITGA4', 'SLC29A
 ovary smooth muscle cells,"['MCAM', 'ITGA7', 'CSPG4', 'CDH6', 'AOC3', 'SUSD5']"
 pancreas endothelial cells,"['PLVAP', 'ESAM', 'ENG', 'PECAM1', 'PODXL', 'F2RL3', 'CLEC14A', 'APLNR', 'TIE1', 'CD200']"
 pancreas fibroblasts,"['THY1', 'COL6A2', 'FAP', 'THBS2', 'MXRA8', 'PDCD1LG2', 'MRC2', 'PCDHA6']"
-pancreas pancreatic endocrine cells,"['KCNK17', 'KIR2DL3', 'IGSF1']"
 pbmc platelets,"['TAGLN2', 'CLU', 'CLEC1B', 'ITGB3', 'ITGA2B', 'TBXA2R', 'CD226', 'ICAM2', 'P2RX1', 'SELP']"
 placenta endothelial cells,"['PECAM1', 'ICAM2', 'FCGR2B', 'APLNR', 'ESAM', 'JAM2', 'PLVAP', 'CD34', 'CLEC14A', 'PCDH17']"
 placenta extravillous trophoblasts,"['ADAM12', 'ABCA7', 'SLCO4A1', 'IL2RB', 'LY6K', 'ITGA5', 'ADAM19', 'EFNA1', 'PDCD1LG2']"
-placenta fibroblasts,['CDON']
 placenta hofbauer cells,"['CD14', 'ITGB2', 'FCGR3A', 'FCGR1A', 'CD53', 'PILRA', 'CD86', 'CD68', 'FCGR2A', 'PLAUR']"
 placenta smooth muscle cells,"['COL6A2', 'MRGPRF', 'ENPP1']"
 placenta syncytiotrophoblasts,"['ST3GAL4', 'LYPD3', 'CCR7', 'SLC38A9', 'SIGLEC6', 'SLC19A1', 'SLC26A2', 'SLC19A2', 'SEMA7A', 'ALPP']"
-prostate club cells,['SLC14A1']
 prostate endothelial cells,"['PLVAP', 'FLT1', 'CLEC14A', 'PECAM1', 'AQP1', 'LIFR', 'PTPRB', 'SELP']"
 prostate fibroblasts,"['PDGFRA', 'SCARA5', 'PTGER3', 'ADRA2C', 'TRHDE', 'LRRN4CL', 'PCDHA6', 'HHIP', 'GP5']"
 prostate smooth muscle cells,"['MCAM', 'SUSD5', 'CSPG4', 'ADRA2A', 'ITGA8', 'ITGA7', 'MRGPRF']"
@@ -82,7 +79,6 @@ rectum enteroendocrine cells,"['SLC29A4', 'TMEM63C']"
 rectum paneth cells,['UGT1A9']
 salivary gland endothelial cells,"['PECAM1', 'PLVAP', 'AQP1', 'FLT1', 'CLEC14A', 'PTPRB', 'THBD', 'RAMP3', 'SLCO2A1', 'ICAM1']"
 salivary gland fibroblasts,"['CTSK', 'LAMA2', 'SCARA5', 'ABCA8', 'THBS2', 'LRP1', 'GPNMB', 'PDGFRA', 'GFRA1', 'COL6A2']"
-salivary gland mucus glandular cells,['PCDHA11']
 salivary gland smooth muscle cells,"['ITGA8', 'MCAM', 'EDNRA', 'ITGA7', 'SUSD5', 'CDH6', 'CSPG4', 'SCN4B', 'TRPC6']"
 skeletal muscle endothelial cells,"['AQP1', 'CLEC14A', 'PTPRB', 'PECAM1', 'CDH5', 'PODXL', 'FLT1', 'APLNR', 'SLC14A1', 'CLEC1A']"
 skeletal muscle fibroblasts,"['COL6A2', 'SCARA5', 'ABCA8', 'MRC2', 'PDGFRA', 'CTSK', 'LAMA2', 'LRRN4CL', 'FAP', 'PLXDC1']"
@@ -96,7 +92,6 @@ skin melanocytes,"['DCT', 'TYRP1', 'KIT', 'BCAN', 'SLC6A15', 'PLXNC1', 'SLC1A4',
 skin smooth muscle cells,"['ADRA2A', 'ITGA7', 'MCAM', 'AOC3', 'CDH6', 'ITGA8', 'SLC2A4', 'EDNRA', 'MRGPRF']"
 skin suprabasal keratinocytes,"['KRT1', 'LYPD3', 'PLA2G3']"
 small intestine enteroendocrine cells,"['SLC29A4', 'TMEM63C']"
-small intestine paneth cells,"['MSLN', 'ADRA2A', 'CNTFR']"
 small intestine proximal enterocytes,"['ANPEP', 'DPEP1', 'ACE', 'SLC5A1', 'ENPEP', 'HHLA2', 'MME', 'SUSD2', 'GGT1']"
 stomach fibroblasts,"['COL6A2', 'CTSK', 'PDGFRA', 'SCARA5', 'PLVAP', 'GPNMB', 'VASN', 'LRRN4CL', 'PROCR', 'MRC2']"
 stomach gastric mucus-secreting cells,"['MST1R', 'SLC9A1', 'SLC26A5']"

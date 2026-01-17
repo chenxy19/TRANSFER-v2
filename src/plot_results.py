@@ -1,15 +1,15 @@
 """
 Plot Results Module
 
-This module generates analysis plots and Excel reports from the
-marker prediction results. It includes:
-- Within-cell analysis: Expression rank of recommended markers
-- Across-cell analysis: Target/off-target expression ratios
+This module generates analysis plots from the marker prediction results.
+It includes:
+- Highest ratio among top 10 markers: Best target/off-target ratio from top 10 markers
+- Highest ratio of two combined markers: Best 2-marker combination ratio product from top 10 markers
 """
 
 import ast
 from pathlib import Path
-from typing import List, Dict
+from typing import List
 
 import numpy as np
 import pandas as pd
@@ -22,182 +22,6 @@ import matplotlib.pyplot as plt
 from .io_utils import load_tissue_cells, load_gene_list, load_expression_matrices
 
 
-def within_cell_analysis(
-    tissue_cells: List,
-    genes: List,
-    nTPM_matrix: np.ndarray,
-    markers_file: str,
-    output_dir: str,
-    method_name: str = "high"
-) -> List[int]:
-    """
-    Analyze expression rank of recommended markers within each cell.
-    
-    For each cell, find the rank of the top recommended marker's expression
-    level compared to all other genes in that cell.
-    
-    Args:
-        tissue_cells: List of [tissue, cell] pairs
-        genes: List of gene names
-        nTPM_matrix: Expression matrix
-        markers_file: Path to recommended markers CSV
-        output_dir: Directory to save plots
-        method_name: Name for output files (e.g., "high" or "median")
-        
-    Returns:
-        List of ranks for each cell
-    """
-    m = len(tissue_cells)
-    cell_strs = [f"{t} {c}" for t, c in tissue_cells]
-    
-    # Load recommended markers
-    rec_df = pd.read_csv(markers_file)
-    rec_df['markers'] = rec_df['markers'].apply(lambda x: ast.literal_eval(x))
-    
-    # Build mapping of cell_id -> marker_ids
-    top_markers = {}
-    for i in range(min(m, len(rec_df))):
-        cell = rec_df.iloc[i, 0]
-        if cell not in cell_strs:
-            continue
-        cell_id = cell_strs.index(cell)
-        markers = []
-        for j in range(min(10, len(rec_df.iloc[i, 1]))):
-            marker = rec_df.iloc[i, 1][j]
-            if [marker] in genes:
-                marker_id = genes.index([marker])
-                markers.append(marker_id)
-        if markers:
-            top_markers[cell_id] = markers
-    
-    # Calculate ranks
-    ranks = []
-    for cell_id in range(m):
-        if cell_id not in top_markers or not top_markers[cell_id]:
-            ranks.append(0)
-            continue
-            
-        row_data = nTPM_matrix[cell_id, :].copy()
-        marker_id = top_markers[cell_id][0]  # Top 1 marker
-        sorted_row = sorted(row_data, reverse=True)
-        rank = sorted_row.index(row_data[marker_id])
-        ranks.append(rank)
-    
-    # Create histogram plot
-    output_path = Path(output_dir)
-    bins = np.arange(0, 1000, 10)
-    counts, bin_edges = np.histogram(ranks, bins=bins)
-    bin_centers = (bin_edges[:-1] + bin_edges[1:]) / 2
-    
-    fig, ax = plt.subplots(figsize=(10, 6))
-    ax.plot(bin_centers, counts, marker='o', linestyle='-', color='b')
-    ax.set_xlabel('Ranks')
-    ax.set_ylabel('Counts')
-    ax.set_title(f'Rank of Expression Level: Recommended Top Marker ({method_name})')
-    
-    # Save as PNG (more universally compatible)
-    fig.savefig(output_path / f'topmarkers_withinCell_{method_name}.png', 
-                format='png', dpi=150, bbox_inches='tight')
-    plt.close(fig)
-    
-    # Print summary statistics
-    count_bins = [0, 0, 0, 0, 0]  # <=10, 11-20, 21-30, 31-40, >40
-    for r in ranks:
-        if r <= 10:
-            count_bins[0] += 1
-        elif r <= 20:
-            count_bins[1] += 1
-        elif r <= 30:
-            count_bins[2] += 1
-        elif r <= 40:
-            count_bins[3] += 1
-        else:
-            count_bins[4] += 1
-    
-    print(f"  Within-cell analysis ({method_name}):")
-    print(f"    Rank distribution: {count_bins}")
-    print(f"    Total cells: {len(ranks)}")
-    
-    return ranks
-
-
-def across_cell_analysis_top1(
-    tissue_cells: List,
-    genes: List,
-    nTPM_matrix: np.ndarray,
-    markers_file: str,
-    output_dir: str,
-    method_name: str = "high"
-) -> None:
-    """
-    Analyze target/off-target ratio for top 1 marker across cells.
-    
-    Args:
-        tissue_cells: List of [tissue, cell] pairs
-        genes: List of gene names
-        nTPM_matrix: Expression matrix
-        markers_file: Path to recommended markers CSV
-        output_dir: Directory to save results
-        method_name: Name for output files
-    """
-    m = len(tissue_cells)
-    cell_strs = [f"{t} {c}" for t, c in tissue_cells]
-    
-    rec_df = pd.read_csv(markers_file)
-    rec_df['markers'] = rec_df['markers'].apply(lambda x: ast.literal_eval(x))
-    
-    # Build mapping
-    top_markers = {}
-    for i in range(min(m, len(rec_df))):
-        cell = rec_df.iloc[i, 0]
-        if cell not in cell_strs:
-            continue
-        cell_id = cell_strs.index(cell)
-        marker = rec_df.iloc[i, 1][0]
-        if [marker] in genes:
-            marker_id = genes.index([marker])
-            top_markers[cell_id] = marker_id
-    
-    # Calculate ratios
-    ratios = []
-    for i in range(m):
-        if i not in top_markers:
-            ratios.append(1.0)
-            continue
-            
-        marker_id = top_markers[i]
-        column_data = nTPM_matrix[:, marker_id].copy()
-        
-        # Delete all cells of the same cell type
-        cell_type = tissue_cells[i][1]
-        delete_idxs = [idx for idx in range(m) if tissue_cells[idx][1] == cell_type]
-        column_data = np.delete(column_data, delete_idxs)
-        
-        off_exp = np.max(column_data) if len(column_data) > 0 else 0
-        targ_exp = nTPM_matrix[i, marker_id]
-        
-        if off_exp == 0 and targ_exp == 0:
-            ratios.append(1.0)
-        elif off_exp == 0:
-            ratios.append(float('inf'))
-        else:
-            ratios.append(targ_exp / off_exp)
-    
-    # Sort and save
-    sorted_indices = np.argsort(ratios)[::-1]
-    x_axis = [tissue_cells[idx][0] + " " + tissue_cells[idx][1] for idx in sorted_indices]
-    y_axis = [ratios[idx] for idx in sorted_indices]
-    
-    df = pd.DataFrame({
-        'Organ-cell': x_axis,
-        'Target/Off-Target Ratio': y_axis
-    })
-    
-    output_path = Path(output_dir)
-    df.to_excel(output_path / f'top1marker_{method_name}.xlsx', index=False)
-    print(f"  Saved: top1marker_{method_name}.xlsx")
-
-
 def across_cell_analysis_top10(
     tissue_cells: List,
     genes: List,
@@ -205,9 +29,10 @@ def across_cell_analysis_top10(
     markers_file: str,
     output_dir: str,
     method_name: str = "high"
-) -> None:
+) -> List[float]:
     """
     Analyze best target/off-target ratio among top 10 markers.
+    Returns the ratios for each cell type.
     
     Args:
         tissue_cells: List of [tissue, cell] pairs
@@ -216,6 +41,9 @@ def across_cell_analysis_top10(
         markers_file: Path to recommended markers CSV
         output_dir: Directory to save results
         method_name: Name for output files
+        
+    Returns:
+        List of ratios for each cell type
     """
     m = len(tissue_cells)
     cell_strs = [f"{t} {c}" for t, c in tissue_cells]
@@ -267,19 +95,7 @@ def across_cell_analysis_top10(
         
         ratios.append(max(ratio_list) if ratio_list else 1.0)
     
-    # Sort and save
-    sorted_indices = np.argsort(ratios)[::-1]
-    x_axis = [tissue_cells[idx][0] + " " + tissue_cells[idx][1] for idx in sorted_indices]
-    y_axis = [ratios[idx] for idx in sorted_indices]
-    
-    df = pd.DataFrame({
-        'Organ-cell': x_axis,
-        'Highest Target/Off-Target Ratio': y_axis
-    })
-    
-    output_path = Path(output_dir)
-    df.to_excel(output_path / f'top10marker_{method_name}.xlsx', index=False)
-    print(f"  Saved: top10marker_{method_name}.xlsx")
+    return ratios
 
 
 def across_cell_analysis_top2_combination(
@@ -289,11 +105,12 @@ def across_cell_analysis_top2_combination(
     markers_file: str,
     output_dir: str,
     method_name: str = "high"
-) -> None:
+) -> List[float]:
     """
     Analyze best 2-marker combination from top 10 markers.
     
     Finds the pair of markers with highest product of target/off-target ratios.
+    Returns the ratios for each cell type.
     
     Args:
         tissue_cells: List of [tissue, cell] pairs
@@ -302,6 +119,9 @@ def across_cell_analysis_top2_combination(
         markers_file: Path to recommended markers CSV
         output_dir: Directory to save results
         method_name: Name for output files
+        
+    Returns:
+        List of ratio products for each cell type
     """
     m = len(tissue_cells)
     cell_strs = [f"{t} {c}" for t, c in tissue_cells]
@@ -362,19 +182,92 @@ def across_cell_analysis_top2_combination(
         
         ratios.append(best_product if best_product > 0 else 1.0)
     
-    # Sort and save
-    sorted_indices = np.argsort(ratios)[::-1]
-    x_axis = [tissue_cells[idx][0] + " " + tissue_cells[idx][1] for idx in sorted_indices]
-    y_axis = [ratios[idx] for idx in sorted_indices]
+    return ratios
+
+
+def plot_ratio_distribution(
+    single_marker_ratios: List[float],
+    two_marker_ratios: List[float],
+    output_dir: str,
+    method_name: str = "high"
+) -> None:
+    """
+    Create a grouped bar chart showing the percentage of cell types 
+    with ratios >= different thresholds (2, 3, 4, 5, 6, >6).
     
-    df = pd.DataFrame({
-        'Organ-cell': x_axis,
-        'Highest Target/Off-Target Ratio Product': y_axis
-    })
+    Args:
+        single_marker_ratios: List of ratios from single marker analysis
+        two_marker_ratios: List of ratios from two-marker combination analysis
+        output_dir: Directory to save the plot
+        method_name: Name for output file
+    """
+    # Define thresholds
+    thresholds = [2, 3, 4, 5, 6]
+    threshold_labels = ['2', '3', '4', '5', '6', '>6']
     
+    # Calculate percentages for single marker
+    single_percentages = []
+    total_cells = len(single_marker_ratios)
+    
+    for threshold in thresholds:
+        count = sum(1 for r in single_marker_ratios if (np.isfinite(r) and r >= threshold) or (not np.isfinite(r)))
+        single_percentages.append((count / total_cells) * 100)
+    
+    # For >6 threshold
+    count_gt6 = sum(1 for r in single_marker_ratios if (np.isfinite(r) and r > 6) or (not np.isfinite(r)))
+    single_percentages.append((count_gt6 / total_cells) * 100)
+    
+    # Calculate percentages for two markers combined
+    two_percentages = []
+    
+    for threshold in thresholds:
+        count = sum(1 for r in two_marker_ratios if (np.isfinite(r) and r >= threshold) or (not np.isfinite(r)))
+        two_percentages.append((count / total_cells) * 100)
+    
+    # For >6 threshold
+    count_gt6 = sum(1 for r in two_marker_ratios if (np.isfinite(r) and r > 6) or (not np.isfinite(r)))
+    two_percentages.append((count_gt6 / total_cells) * 100)
+    
+    # Create the plot
     output_path = Path(output_dir)
-    df.to_excel(output_path / f'top2_10marker_{method_name}.xlsx', index=False)
-    print(f"  Saved: top2_10marker_{method_name}.xlsx")
+    fig, ax = plt.subplots(figsize=(10, 6))
+    
+    x = np.arange(len(threshold_labels))
+    width = 0.35  # Width of bars
+    
+    # Create bars - using specific colors to match the reference image
+    bars1 = ax.bar(x - width/2, single_percentages, width, label='Single marker', color='#FF0000')  # Red
+    bars2 = ax.bar(x + width/2, two_percentages, width, label='Two markers combined (multiplied)', color='#FF69B4')  # Hot pink/magenta
+    
+    # Customize the plot
+    ax.set_xlabel('Fold difference in the expression level to distinguish different cell types', fontsize=12)
+    ax.set_ylabel('Percentage of cell types', fontsize=12)
+    ax.set_title('Number of cell types distinguishable with surface marker(s)', fontsize=14, fontweight='bold')
+    ax.set_xticks(x)
+    ax.set_xticklabels(threshold_labels)
+    ax.set_ylim(0, 80)
+    ax.set_yticks([0, 20, 40, 60, 80])
+    ax.legend(loc='upper right')
+    ax.grid(axis='y', alpha=0.3, linestyle='--')
+    
+    # Add value labels on bars
+    for bars in [bars1, bars2]:
+        for bar in bars:
+            height = bar.get_height()
+            ax.text(bar.get_x() + bar.get_width()/2., height,
+                   f'{height:.1f}%',
+                   ha='center', va='bottom', fontsize=9)
+    
+    plt.tight_layout()
+    
+    # Save as both PNG and SVG
+    fig.savefig(output_path / f'ratio_distribution_{method_name}.png', 
+                format='png', dpi=150, bbox_inches='tight')
+    fig.savefig(output_path / f'ratio_distribution_{method_name}.svg', 
+                format='svg', bbox_inches='tight')
+    plt.close(fig)
+    
+    print(f"  Saved: ratio_distribution_{method_name}.png and ratio_distribution_{method_name}.svg")
 
 
 def run_plotting(
@@ -389,7 +282,7 @@ def run_plotting(
     Args:
         data_dir: Directory containing processed data files
         output_dir: Directory containing marker recommendation files
-        plots_dir: Directory to save plots and Excel files
+        plots_dir: Directory to save plots
         verbose: Whether to print progress
     """
     if verbose:
@@ -422,14 +315,11 @@ def run_plotting(
     
     markers_high = output_path / 'recommended_whole_body_markers_high.csv'
     if markers_high.exists():
-        within_cell_analysis(tissue_cells, genes, nTPM_high, str(markers_high), 
-                           plots_dir, "high")
-        across_cell_analysis_top1(tissue_cells, genes, nTPM_high, str(markers_high),
-                                 plots_dir, "high")
-        across_cell_analysis_top10(tissue_cells, genes, nTPM_high, str(markers_high),
-                                  plots_dir, "high")
-        across_cell_analysis_top2_combination(tissue_cells, genes, nTPM_high, 
-                                             str(markers_high), plots_dir, "high")
+        single_ratios_high = across_cell_analysis_top10(tissue_cells, genes, nTPM_high, str(markers_high),
+                                                        plots_dir, "high")
+        two_ratios_high = across_cell_analysis_top2_combination(tissue_cells, genes, nTPM_high, 
+                                                                 str(markers_high), plots_dir, "high")
+        plot_ratio_distribution(single_ratios_high, two_ratios_high, plots_dir, "high")
     else:
         print(f"  Warning: {markers_high} not found, skipping HIGH analysis")
     
@@ -439,14 +329,11 @@ def run_plotting(
     
     markers_median = output_path / 'recommended_whole_body_markers_median.csv'
     if markers_median.exists():
-        within_cell_analysis(tissue_cells, genes, nTPM_median, str(markers_median),
-                           plots_dir, "median")
-        across_cell_analysis_top1(tissue_cells, genes, nTPM_median, str(markers_median),
-                                 plots_dir, "median")
-        across_cell_analysis_top10(tissue_cells, genes, nTPM_median, str(markers_median),
-                                  plots_dir, "median")
-        across_cell_analysis_top2_combination(tissue_cells, genes, nTPM_median,
-                                             str(markers_median), plots_dir, "median")
+        single_ratios_median = across_cell_analysis_top10(tissue_cells, genes, nTPM_median, str(markers_median),
+                                               plots_dir, "median")
+        two_ratios_median = across_cell_analysis_top2_combination(tissue_cells, genes, nTPM_median,
+                                                                str(markers_median), plots_dir, "median")
+        plot_ratio_distribution(single_ratios_median, two_ratios_median, plots_dir, "median")
     else:
         print(f"  Warning: {markers_median} not found, skipping MEDIAN analysis")
     
@@ -475,7 +362,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--plots-dir",
         default="Plots",
-        help="Directory to save plots and Excel files (default: Plots)"
+        help="Directory to save plots (default: Plots)"
     )
     
     args = parser.parse_args()
