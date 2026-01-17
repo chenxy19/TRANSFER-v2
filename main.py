@@ -31,10 +31,10 @@ from src.plot_results import run_plotting
 
 
 def main():
-    """Run the complete cell surface marker prediction pipeline."""
+    """Run the complete cell surface marker identification pipeline."""
     
     parser = argparse.ArgumentParser(
-        description="Cell Surface Marker Prediction Pipeline",
+        description="Cell Surface Marker Identification Pipeline",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
@@ -87,7 +87,7 @@ Examples:
     plots_dir = Path(args.plots_dir).resolve()
     
     print("=" * 60)
-    print("  Cell Surface Marker Prediction Pipeline")
+    print("  Cell Surface Marker Identification Pipeline")
     print("=" * 60)
     print(f"\nData directory: {data_dir}")
     print(f"Output directory: {output_dir}")
