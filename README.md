@@ -40,6 +40,7 @@ No non-standard hardware is required. The software runs on any standard desktop 
 
    ```bash
    git clone <repository-url>
+   cd TRANSFER-v2
    ```
 
 2. **Create a virtual environment (recommended):**
