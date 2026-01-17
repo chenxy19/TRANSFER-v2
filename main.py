@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """
-Cell Surface Marker Prediction Pipeline
+Cell Surface Marker Identification Pipeline
 
-This script runs the complete pipeline for predicting cell-specific
+This script runs the complete pipeline for identifying cell type-specific
 surface markers for targeted delivery applications.
 
 The pipeline consists of two main stages:
 1. Data Processing: Clean and prepare gene expression data
-2. Controlled Learning: Optimize penalty parameters and predict markers
+2. Controlled Learning: Optimize penalty parameters and identify markers
 
 Usage:
     python main.py [--data-dir DATA_DIR] [--output-dir OUTPUT_DIR] [--skip-processing] [--skip-plots]
