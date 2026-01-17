@@ -107,12 +107,14 @@ The pipeline generates the following output files in the `Results/` directory:
 
 The pipeline also generates analysis plots in the `Plots/` directory:
 
-| File                          | Description                             |
-| ----------------------------- | --------------------------------------- |
-| `topmarkers_withinCell_*.png` | Histogram of marker expression ranks    |
-| `top1marker_*.xlsx`           | Target/off-target ratios for top marker |
-| `top10marker_*.xlsx`          | Best ratio among top 10 markers         |
-| `top2_10marker_*.xlsx`        | Best 2-marker combination ratios        |
+| File                              | Description                                                                    |
+| --------------------------------- | ------------------------------------------------------------------------------ |
+| `ratio_distribution_high.png`    | Percentage of cell types distinguishable at different fold-difference thresholds (HIGH method, PNG format) |
+| `ratio_distribution_high.svg`     | Percentage of cell types distinguishable at different fold-difference thresholds (HIGH method, SVG format) |
+| `ratio_distribution_median.png`   | Percentage of cell types distinguishable at different fold-difference thresholds (MEDIAN method, PNG format) |
+| `ratio_distribution_median.svg`   | Percentage of cell types distinguishable at different fold-difference thresholds (MEDIAN method, SVG format) |
+
+The plots show the percentage of cell types that can be distinguished using either a single surface marker (red bars) or two combined markers (pink bars) at fold-difference thresholds of 2, 3, 4, 5, 6, and >6.
 
 ### Expected Console Output
 
@@ -121,9 +123,9 @@ The pipeline also generates analysis plots in the `Plots/` directory:
   Cell Surface Marker Prediction Pipeline
 ============================================================
 
-Data directory: /Users/jren/workspace/Transfer_code/Data
-Output directory: /Users/jren/workspace/Transfer_code/Results
-Plots directory: /Users/jren/workspace/Transfer_code/Plots
+Data directory: /Users/luna/Downloads/Transfer_code/Data
+Output directory: /Users/luna/Downloads/Transfer_code/Results
+Plots directory: /Users/luna/Downloads/Transfer_code/Plots
 
 
 ============================================================
@@ -186,7 +188,7 @@ Optimizing parameters...
 
 Generating marker recommendations...
   Saved recommendations for 154 cell types
-  Saved trimmed recommendations for 117 cell types
+  Saved trimmed recommendations for 113 cell types
 
 --- Processing nTPM MEDIAN method ---
 
@@ -201,7 +203,7 @@ Optimizing parameters...
 
 Generating marker recommendations...
   Saved recommendations for 154 cell types
-  Saved trimmed recommendations for 120 cell types
+  Saved trimmed recommendations for 115 cell types
 
 === Controlled Learning Complete ===
 
@@ -221,23 +223,13 @@ Loading data...
   Loaded 963 genes
 
 Analyzing HIGH method results...
-  Within-cell analysis (high):
-    Rank distribution: [57, 28, 17, 4, 48]
-    Total cells: 154
-  Saved: top1marker_high.xlsx
-  Saved: top10marker_high.xlsx
-  Saved: top2_10marker_high.xlsx
+  Saved: ratio_distribution_high.png and ratio_distribution_high.svg
 
 Analyzing MEDIAN method results...
-  Within-cell analysis (median):
-    Rank distribution: [47, 35, 11, 8, 53]
-    Total cells: 154
-  Saved: top1marker_median.xlsx
-  Saved: top10marker_median.xlsx
-  Saved: top2_10marker_median.xlsx
+  Saved: ratio_distribution_median.png and ratio_distribution_median.svg
 
 ============================================================
-Plots and analysis saved to: /Users/jren/workspace/Transfer_code/Plots
+Plots and analysis saved to: /Users/luna/Downloads/Transfer_code/Plots
 ============================================================
 Plot generation completed successfully.
 
@@ -256,14 +248,10 @@ Output files generated:
   ✓ recommended_whole_body_markers_median.csv (19.0 KB)
 
 Plot files (in Plots/):
-  ✓ top10marker_high.xlsx (8.5 KB)
-  ✓ top10marker_median.xlsx (8.5 KB)
-  ✓ top1marker_high.xlsx (8.8 KB)
-  ✓ top1marker_median.xlsx (8.8 KB)
-  ✓ top2_10marker_high.xlsx (8.9 KB)
-  ✓ top2_10marker_median.xlsx (8.9 KB)
-  ✓ topmarkers_withinCell_high.png (41.0 KB)
-  ✓ topmarkers_withinCell_median.png (42.1 KB)
+  ✓ ratio_distribution_high.png (74.0 KB)
+  ✓ ratio_distribution_high.svg (54.3 KB)
+  ✓ ratio_distribution_median.png (74.9 KB)
+  ✓ ratio_distribution_median.svg (54.4 KB)
 
 ============================================================
   Results Summary
