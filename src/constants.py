@@ -120,7 +120,6 @@ LITERATURE_POSITIVES_GROUPED = [
 CUTOFF_GENES = ["SIGLEC5", "PCDHGC5", "PCDHGC11"]
 
 # Cell types to exclude from final recommendations
-# These are typically low-quality or redundant cell type annotations
 EXCLUDE_CELLS = [
     "adipose tissue fibroblasts",
     "adipose tissue smooth muscle cells",
