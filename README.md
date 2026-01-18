@@ -56,9 +56,27 @@ No non-standard hardware is required. The software runs on any standard desktop 
    pip install -r requirements.txt
    ```
 
+4. **Download required data files:**
+   
+   Some data files are too large to be included in the GitHub repository. You must download them separately and place them in the `data/` directory:
+   
+   - **`rna_single_cell_type_tissue.tsv`** (638 MB)
+     - Download from: [Human Protein Atlas](https://www.proteinatlas.org/) single-cell RNA expression dataset
+     - Place in: `data/rna_single_cell_type_tissue.tsv`
+   
+   - **`uniprot_subcellular_localization`** (35 MB)
+     - Download from: [UniProt](https://www.uniprot.org/) subcellular location data
+     - Place in: `data/uniprot_subcellular_localization`
+   
+   - **`Cell_marker_Human.xlsx`**
+     - Download from: [CellMarker](http://xteam.xbio.top/CellMarker/)
+     - Place in: `data/Cell_marker_Human.xlsx`
+   
+   **Note:** Ensure all file names match exactly (case-sensitive) before running the pipeline.
+
 ### Typical Install Time
 
-Installation typically takes **1-2 minutes** on a standard desktop computer with a stable internet connection.
+Installation typically takes **1-2 minutes** on a standard desktop computer with a stable internet connection. Downloading the required data files may take additional time depending on your internet speed.
 
 ## 3. Demo
 
@@ -76,26 +94,15 @@ The repository includes a complete demo dataset in the `data/` directory contain
 | `PanglaoDB_name_match.csv`            | Cell type name mappings for PanglaoDB                    |
 | `common_cells_across_tissues.csv`     | Cell types found across multiple tissues                 |
 
-### Downloading Large Files
+### Required Data Files
 
-**Note:** Two files are too large to be included in the GitHub repository (exceeding GitHub's 100 MB file size limit). You must download these files separately and place them in the `data/` directory before running the pipeline:
+**Note:** The following files are required but not included in the GitHub repository due to size limitations. These should be downloaded during the installation step (see Section 2):
 
-1. **`rna_single_cell_type_tissue.tsv`** (638 MB)
-   - **Source:** Human Protein Atlas
-   - **Download:** Available from the [Human Protein Atlas](https://www.proteinatlas.org/) single-cell RNA expression dataset
-   - **Location:** Place in `data/rna_single_cell_type_tissue.tsv`
-   - **Required columns:** `Gene name`, `Tissue`, `Cell type`, `nTPM`, `pTPM` (optional)
+- **`rna_single_cell_type_tissue.tsv`** (638 MB) - Single-cell RNA expression data from Human Protein Atlas
+- **`uniprot_subcellular_localization`** (35 MB) - UniProt subcellular location data
+- **`Cell_marker_Human.xlsx`** - CellMarker database file
 
-2. **`uniprot_subcellular_localization`** (35 MB)
-   - **Source:** UniProt database
-   - **Download:** Available from [UniProt](https://www.uniprot.org/) subcellular location data
-   - **Location:** Place in `data/uniprot_subcellular_localization`
-   - **Note:** This file is used for filtering non-membrane proteins
-
-**After downloading:**
-- Ensure both files are placed in the `data/` directory (or your specified `--data-dir` path)
-- Verify the file names match exactly (case-sensitive)
-- The pipeline will automatically detect and use these files during data processing
+For detailed download instructions, see the **Installation Guide** (Section 2, Step 4).
 
 ### Instructions to Run Demo
 

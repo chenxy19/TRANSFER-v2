@@ -29,6 +29,9 @@ __MACOSX/
 # Unnecessary files
 nr-software-policy*.pdf
 output.txt
+output_full_run.txt
+*.txt
+!requirements.txt
 
 # Plot outputs (optional - uncomment if you don't want to track plots)
 # plots/
