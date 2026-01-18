@@ -2,7 +2,7 @@
 Controlled Learning Module
 
 This module implements the penalty matrix optimization algorithm for
-cell surface marker prediction.
+cell surface marker identification.
 
 The algorithm optimizes three parameters (p, q, r) that control how expression
 from different tissue-cell combinations is weighted when scoring marker candidates.
@@ -605,7 +605,7 @@ if __name__ == "__main__":
     import argparse
     
     parser = argparse.ArgumentParser(
-        description="Run controlled learning for cell surface marker prediction"
+        description="Run controlled learning for cell surface marker identification"
     )
     parser.add_argument(
         "--data-dir", default=".",
