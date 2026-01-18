@@ -71,11 +71,11 @@ Installation typically takes **1-2 minutes** on a standard desktop computer with
 
 ### Demo Dataset
 
-The repository includes a complete demo dataset in the `data/` directory containing:
+The repository includes a complete demo dataset in the `Data/` directory containing:
 
 | File                                  | Description                                              |
 | ------------------------------------- | -------------------------------------------------------- |
-| `rna_single_cell_type_tissue.tsv`     | Single-cell RNA expression data from Human Protein Atlas |
+| `rna_single_cell_type_tissue.tsv`     | Single cell RNA expression data from Human Protein Atlas |
 | `mass_spec_valid_surface_protein.csv` | Mass spectrometry-validated surface proteins             |
 | `Cell_marker_Human.xlsx`              | CellMarker database annotations                          |
 | `PanglaoDB_markers_27_Mar_2020.tsv`   | PanglaoDB marker annotations                             |
@@ -324,7 +324,7 @@ To run the pipeline on your own data, prepare the following input files in your 
 
 6. **`PanglaoDB_name_match.csv`** - Mapping between your cell type names and PanglaoDB names
 
-7. **`common_cells_across_tissues.csv`** - List of cell types present in multiple tissues
+7. **`common_cells_across_tissues.csv`** - List of cell types present in multiple tissues which were treated as the same cell type
 
 ### Command-Line Options
 
@@ -366,14 +366,9 @@ The main output files are `recommended_whole_body_markers_*.csv`, which contain:
 
 Higher-ranked markers have better specificity for distinguishing the target cell type from other cell types across all tissues.
 
-## License
-
-[Add your license information here]
-
 ## Citation
 
-[Add citation information here]
+Xinyi Chen, Yinglin Situ, Yuexuan Yang, Luna Lyu, Mengting Han, Lorenzo Magni, Maylin Lum Fu, Boxiong Deng, Sui Wang, Lei S. Qi. Programmable macromolecule delivery via engineered trogocytosis. Nature Cell Biology (In revision).
 
-## Contact
 
-[Add contact information here]
+
