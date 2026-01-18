@@ -1,7 +1,7 @@
 """
-Cell Surface Marker Prediction Pipeline
+Cell Surface Marker Identification Pipeline
 
-This package contains modules for predicting cell-specific surface markers
+This package contains modules for identifying cell-specific surface markers
 for targeted delivery applications.
 
 Modules:
