@@ -75,7 +75,7 @@ The repository includes a complete demo dataset in the `Data/` directory contain
 
 | File                                  | Description                                              |
 | ------------------------------------- | -------------------------------------------------------- |
-| `rna_single_cell_type_tissue.tsv`     | Single cell RNA expression data from Human Protein Atlas |
+| `rna_single_cell_type_tissue.tsv`     | RNA expression data for all cell types from Human Protein Atlas |
 | `mass_spec_valid_surface_protein.csv` | Mass spectrometry-validated surface proteins             |
 | `Cell_marker_Human.xlsx`              | CellMarker database annotations                          |
 | `PanglaoDB_markers_27_Mar_2020.tsv`   | PanglaoDB marker annotations                             |
