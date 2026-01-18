@@ -7,7 +7,7 @@ for targeted delivery applications.
 Modules:
 --------
 constants
-    Configuration constants (immune subtypes, non-membrane genes, literature positives)
+    Configuration constants (immune cell types, non-membrane genes, positive markers from literatures)
 
 io_utils
     Shared I/O utilities for loading and saving data files
