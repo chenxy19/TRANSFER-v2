@@ -2,7 +2,7 @@
 Data Processing Module
 
 This module handles processing and cleaning of gene expression data for
-cell surface marker prediction. It includes functions for:
+cell surface marker identification. It includes functions for:
 - Loading and cleaning gene expression data
 - Filtering for membrane/surface proteins
 - Building tissue-cell expression matrices
