@@ -40,7 +40,6 @@ No non-standard hardware is required. The software runs on any standard desktop 
 
    ```bash
    git clone <repository-url>
-   cd TRANSFER-v2
    ```
 
 2. **Create a virtual environment (recommended):**
@@ -54,6 +53,7 @@ No non-standard hardware is required. The software runs on any standard desktop 
 
 3. **Install dependencies:**
    ```bash
+   cd TRANSFER-v2
    pip install -r requirements.txt
    ```
 
