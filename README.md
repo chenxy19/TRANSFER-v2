@@ -311,7 +311,6 @@ To run the pipeline on your own data, prepare the following input files in your 
    - `Tissue`: Tissue type
    - `Cell type`: Cell type name
    - `nTPM`: Normalized TPM expression value
-   - `pTPM`: Percent TPM (optional)
 
 2. **`mass_spec_valid_surface_protein.csv`** - Surface protein list with column:
 
