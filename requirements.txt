@@ -1,4 +1,4 @@
-# Cell Surface Marker Prediction Pipeline
+# Cell Surface Marker Identification Pipeline
 # Required dependencies
 
 numpy>=1.21.0
