@@ -82,6 +82,7 @@ The repository includes a complete demo dataset in the `Data/` directory contain
 | `CellMarker_name_match.csv`           | Cell type name mappings for CellMarker                   |
 | `PanglaoDB_name_match.csv`            | Cell type name mappings for PanglaoDB                    |
 | `common_cells_across_tissues.csv`     | Cell types found across multiple tissues, which were treated as a single cell type                 |
+| `uniprot_subcellular_localization.csv`     | The subcellular localization annotation from Uniprot             |
 
 ### Required Data Files
 
