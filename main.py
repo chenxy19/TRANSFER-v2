@@ -51,14 +51,14 @@ Examples:
     
     parser.add_argument(
         "--data-dir",
-        default="Data",
-        help="Directory containing input data files (default: Data)"
+        default="data",
+        help="Directory containing input data files (default: data)"
     )
     
     parser.add_argument(
         "--output-dir",
-        default="Results",
-        help="Directory for output files (default: Results)"
+        default="results",
+        help="Directory for output files (default: results)"
     )
     
     parser.add_argument(
@@ -69,8 +69,8 @@ Examples:
     
     parser.add_argument(
         "--plots-dir",
-        default="Plots",
-        help="Directory for plot outputs (default: Plots)"
+        default="plots",
+        help="Directory for plot outputs (default: plots)"
     )
     
     parser.add_argument(
