@@ -59,7 +59,7 @@ No non-standard hardware is required. The software runs on any standard desktop 
 
 4. **Download required data files:**
    
-   Some data files are too large to be included in the GitHub repository. You need to download them from [Data Repository](https://doi.org/10.25740/nv892by9517) and place them in the `Data/` directory:
+   Some data files are too large to be included in the GitHub repository. You need to download them from [Data Repository: Input data for cell type specific marker identification/](https://doi.org/10.25740/nv892by9517) and place them in the `Data/` directory:
    
    - **`rna_single_cell_type_tissue.tsv`** (638 MB). Downloaded from: [Human Protein Atlas version 16](https://www.proteinatlas.org/) single cell type RNA expression dataset
      - Place in: `Data/rna_single_cell_type_tissue.tsv`
