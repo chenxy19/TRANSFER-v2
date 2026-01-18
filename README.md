@@ -149,9 +149,9 @@ The plots show the percentage of cell types that can be distinguished using eith
   Cell Surface Marker Prediction Pipeline
 ============================================================
 
-Data directory: /Users/luna/Downloads/Transfer_code/data
-Output directory: /Users/luna/Downloads/Transfer_code/results
-Plots directory: /Users/luna/Downloads/Transfer_code/plots
+Data directory: <Data directory>
+Output directory: <Output directory>
+Plots directory: <Plots directory>
 
 
 ============================================================
@@ -255,7 +255,7 @@ Analyzing MEDIAN method results...
   Saved: ratio_distribution_median.png and ratio_distribution_median.svg
 
 ============================================================
-Plots and analysis saved to: /Users/luna/Downloads/Transfer_code/plots
+Plots and analysis saved to: <Plots directory>
 ============================================================
 Plot generation completed successfully.
 
