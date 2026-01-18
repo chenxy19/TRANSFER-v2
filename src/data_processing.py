@@ -423,7 +423,7 @@ def run_data_processing(data_dir: str, output_dir: str) -> Dict:
     
     # Load marker databases
     print("\nLoading marker databases...")
-    cellmarker_df = pd.read_excel(data_path / "Cell_marker_Human.xlsx")
+    cellmarker_df = pd.read_excel(data_path / "Cell_marker_Human.xlsx", engine='openpyxl')
     panglao_df = pd.read_csv(data_path / "PanglaoDB_markers_27_Mar_2020.tsv", delimiter='\t')
     
     cellmarker_genes, cm_match_count, cm_marker_count = load_and_get_cellmarker_genes(
