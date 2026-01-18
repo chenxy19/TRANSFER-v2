@@ -81,7 +81,7 @@ The repository includes a complete demo dataset in the `Data/` directory contain
 | `PanglaoDB_markers_27_Mar_2020.tsv`   | PanglaoDB marker annotations                             |
 | `CellMarker_name_match.csv`           | Cell type name mappings for CellMarker                   |
 | `PanglaoDB_name_match.csv`            | Cell type name mappings for PanglaoDB                    |
-| `common_cells_across_tissues.csv`     | Cell types found across multiple tissues                 |
+| `common_cells_across_tissues.csv`     | Cell types found across multiple tissues, which were treated as a single cell type                 |
 
 ### Required Data Files
 
