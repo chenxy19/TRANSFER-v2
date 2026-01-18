@@ -1,6 +1,10 @@
 # Large data files (exceed GitHub's 100 MB limit)
 data/rna_single_cell_type_tissue.tsv
+Data/rna_single_cell_type_tissue.tsv
 data/uniprot_subcellular_localization
+Data/uniprot_subcellular_localization
+data/Cell_marker_Human.xlsx
+Data/Cell_marker_Human.xlsx
 
 # Python cache files
 __pycache__/
