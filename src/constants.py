@@ -2,7 +2,7 @@
 Constants Module
 
 This module contains all configuration constants used across the
-cell surface marker prediction pipeline.
+cell surface marker identification pipeline.
 """
 
 # Immune cell subtypes that should be grouped into "immune" tissue
