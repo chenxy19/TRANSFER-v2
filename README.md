@@ -1,4 +1,4 @@
-# Cell Surface Marker Identification Pipeline
+# Cell type-specific Surface Marker Identification Pipeline
 
 A computational pipeline for identifying cell type-specific surface markers for targeted delivery applications. This tool analyzes gene expression data across tissues and cell types to identify optimal cell surface markers that can distinguish specific cell types across the body.
 
