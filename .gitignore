@@ -1,1 +1,30 @@
-Data/rna_single_cell_type_tissue.tsv
+# Large data files (exceed GitHub's 100 MB limit)
+data/rna_single_cell_type_tissue.tsv
+data/uniprot_subcellular_localization
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Plot outputs (optional - uncomment if you don't want to track plots)
+# plots/
+# Plots/
