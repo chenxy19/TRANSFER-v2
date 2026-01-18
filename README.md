@@ -59,19 +59,16 @@ No non-standard hardware is required. The software runs on any standard desktop 
 
 4. **Download required data files:**
    
-   Some data files are too large to be included in the GitHub repository. You must download them separately and place them in the `data/` directory:
+   Some data files are too large to be included in the GitHub repository. You need to download them from [Data Repository](https://doi.org/10.25740/nv892by9517) and place them in the `Data/` directory:
    
-   - **`rna_single_cell_type_tissue.tsv`** (638 MB)
-     - Download from: [Human Protein Atlas](https://www.proteinatlas.org/) single-cell RNA expression dataset
-     - Place in: `data/rna_single_cell_type_tissue.tsv`
+   - **`rna_single_cell_type_tissue.tsv`** (638 MB). Downloaded from: [Human Protein Atlas version 16](https://www.proteinatlas.org/) single cell type RNA expression dataset
+     - Place in: `Data/rna_single_cell_type_tissue.tsv`
    
-   - **`uniprot_subcellular_localization`** (35 MB)
-     - Download from: [UniProt](https://www.uniprot.org/) subcellular location data
-     - Place in: `data/uniprot_subcellular_localization`
+   - **`uniprot_subcellular_localization`** (35 MB). Downloaded from: [UniProt](https://www.uniprot.org/) subcellular location data
+     - Place in: `Data/uniprot_subcellular_localization`
    
-   - **`Cell_marker_Human.xlsx`**
-     - Download from: [CellMarker](http://xteam.xbio.top/CellMarker/)
-     - Place in: `data/Cell_marker_Human.xlsx`
+   - **`Cell_marker_Human.xlsx`**. Downloaded from: [CellMarker](http://xteam.xbio.top/CellMarker/)
+     - Place in: `Data/Cell_marker_Human.xlsx`
    
    **Note:** Ensure all file names match exactly (case-sensitive) before running the pipeline.
 
