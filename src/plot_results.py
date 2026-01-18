@@ -1,10 +1,10 @@
 """
 Plot Results Module
 
-This module generates analysis plots from the marker prediction results.
-It includes:
-- Highest ratio among top 10 markers: Best target/off-target ratio from top 10 markers
-- Highest ratio of two combined markers: Best 2-marker combination ratio product from top 10 markers
+This module generates analysis plots from the marker identification results.
+It calculates and plots the histogram of specificity score distribution for best marker(s) of all cell types:
+- Highest on-target/off-target ratio among top 10 markers
+- Highest ratio of two markers combined among top 10 markers (taking the product of on-target/off-target ratios)
 """
 
 import ast
