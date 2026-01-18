@@ -229,7 +229,7 @@ def run_grid_search(
         - count1: Database markers appearing in top-10 (reward)
         - count2: Literature markers appearing in top-10 (reward)
         - count3: Negative markers appearing in top-10 (penalty)
-        - count4: Highly expressed genes in top-10 (penalty)
+        - count4: Constitutively highly expressed genes in top-10 (penalty)
     
     Args:
         tissue_cells: List of [tissue, cell_type] pairs
