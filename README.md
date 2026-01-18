@@ -77,6 +77,27 @@ The repository includes a complete demo dataset in the `Data/` directory contain
 | `PanglaoDB_name_match.csv`            | Cell type name mappings for PanglaoDB                    |
 | `common_cells_across_tissues.csv`     | Cell types found across multiple tissues                 |
 
+### Downloading Large Files
+
+**Note:** Two files are too large to be included in the GitHub repository (exceeding GitHub's 100 MB file size limit). You must download these files separately and place them in the `Data/` directory before running the pipeline:
+
+1. **`rna_single_cell_type_tissue.tsv`** (638 MB)
+   - **Source:** Human Protein Atlas
+   - **Download:** Available from the [Human Protein Atlas](https://www.proteinatlas.org/) single-cell RNA expression dataset
+   - **Location:** Place in `Data/rna_single_cell_type_tissue.tsv`
+   - **Required columns:** `Gene name`, `Tissue`, `Cell type`, `nTPM`, `pTPM` (optional)
+
+2. **`uniprot_subcellular_localization`** (35 MB)
+   - **Source:** UniProt database
+   - **Download:** Available from [UniProt](https://www.uniprot.org/) subcellular location data
+   - **Location:** Place in `Data/uniprot_subcellular_localization`
+   - **Note:** This file is used for filtering non-membrane proteins
+
+**After downloading:**
+- Ensure both files are placed in the `Data/` directory (or your specified `--data-dir` path)
+- Verify the file names match exactly (case-sensitive)
+- The pipeline will automatically detect and use these files during data processing
+
 ### Instructions to Run Demo
 
 Run the complete pipeline with default settings:
