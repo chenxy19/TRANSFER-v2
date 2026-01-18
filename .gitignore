@@ -24,6 +24,11 @@ ENV/
 # OS files
 .DS_Store
 Thumbs.db
+__MACOSX/
+
+# Unnecessary files
+nr-software-policy*.pdf
+output.txt
 
 # Plot outputs (optional - uncomment if you don't want to track plots)
 # plots/

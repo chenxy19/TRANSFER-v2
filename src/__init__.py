@@ -21,7 +21,7 @@ controlled_learning
     including grid search and marker recommendations
 
 plot_results
-    Analysis plots and Excel reports (within-cell ranks, target/off-target ratios)
+    Analysis plots showing ratio distributions (percentage of cell types distinguishable at different thresholds)
 
 Usage:
 ------
@@ -29,9 +29,9 @@ Run the complete pipeline:
     $ python main.py
 
 Or run individual modules:
-    $ python -m src.data_processing --data-dir Data --output-dir Results
-    $ python -m src.controlled_learning --data-dir Results --output-dir Results
-    $ python -m src.plot_results --data-dir Results --plots-dir Plots
+    $ python -m src.data_processing --data-dir data --output-dir results
+    $ python -m src.controlled_learning --data-dir results --output-dir results
+    $ python -m src.plot_results --data-dir results --plots-dir plots
 """
 
 __version__ = "1.0.0"

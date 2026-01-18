@@ -64,7 +64,7 @@ Installation typically takes **1-2 minutes** on a standard desktop computer with
 
 ### Demo Dataset
 
-The repository includes a complete demo dataset in the `Data/` directory containing:
+The repository includes a complete demo dataset in the `data/` directory containing:
 
 | File                                  | Description                                              |
 | ------------------------------------- | -------------------------------------------------------- |
@@ -78,22 +78,22 @@ The repository includes a complete demo dataset in the `Data/` directory contain
 
 ### Downloading Large Files
 
-**Note:** Two files are too large to be included in the GitHub repository (exceeding GitHub's 100 MB file size limit). You must download these files separately and place them in the `Data/` directory before running the pipeline:
+**Note:** Two files are too large to be included in the GitHub repository (exceeding GitHub's 100 MB file size limit). You must download these files separately and place them in the `data/` directory before running the pipeline:
 
 1. **`rna_single_cell_type_tissue.tsv`** (638 MB)
    - **Source:** Human Protein Atlas
    - **Download:** Available from the [Human Protein Atlas](https://www.proteinatlas.org/) single-cell RNA expression dataset
-   - **Location:** Place in `Data/rna_single_cell_type_tissue.tsv`
+   - **Location:** Place in `data/rna_single_cell_type_tissue.tsv`
    - **Required columns:** `Gene name`, `Tissue`, `Cell type`, `nTPM`, `pTPM` (optional)
 
 2. **`uniprot_subcellular_localization`** (35 MB)
    - **Source:** UniProt database
    - **Download:** Available from [UniProt](https://www.uniprot.org/) subcellular location data
-   - **Location:** Place in `Data/uniprot_subcellular_localization`
+   - **Location:** Place in `data/uniprot_subcellular_localization`
    - **Note:** This file is used for filtering non-membrane proteins
 
 **After downloading:**
-- Ensure both files are placed in the `Data/` directory (or your specified `--data-dir` path)
+- Ensure both files are placed in the `data/` directory (or your specified `--data-dir` path)
 - Verify the file names match exactly (case-sensitive)
 - The pipeline will automatically detect and use these files during data processing
 
@@ -108,12 +108,12 @@ python main.py
 Or with explicit parameters:
 
 ```bash
-python main.py --data-dir Data --output-dir Results --plots-dir Plots
+python main.py --data-dir data --output-dir results --plots-dir plots
 ```
 
 ### Expected Output
 
-The pipeline generates the following output files in the `Results/` directory:
+The pipeline generates the following output files in the `results/` directory:
 
 | File                                        | Description                            |
 | ------------------------------------------- | -------------------------------------- |
@@ -126,7 +126,7 @@ The pipeline generates the following output files in the `Results/` directory:
 | `recommended_whole_body_markers_high.csv`   | **Predicted markers (HIGH method)**    |
 | `recommended_whole_body_markers_median.csv` | **Predicted markers (MEDIAN method)**  |
 
-The pipeline also generates analysis plots in the `Plots/` directory:
+The pipeline also generates analysis plots in the `plots/` directory:
 
 | File                              | Description                                                                    |
 | --------------------------------- | ------------------------------------------------------------------------------ |
@@ -144,9 +144,9 @@ The plots show the percentage of cell types that can be distinguished using eith
   Cell Surface Marker Prediction Pipeline
 ============================================================
 
-Data directory: /Users/luna/Downloads/Transfer_code/Data
-Output directory: /Users/luna/Downloads/Transfer_code/Results
-Plots directory: /Users/luna/Downloads/Transfer_code/Plots
+Data directory: /Users/luna/Downloads/Transfer_code/data
+Output directory: /Users/luna/Downloads/Transfer_code/results
+Plots directory: /Users/luna/Downloads/Transfer_code/plots
 
 
 ============================================================
@@ -250,7 +250,7 @@ Analyzing MEDIAN method results...
   Saved: ratio_distribution_median.png and ratio_distribution_median.svg
 
 ============================================================
-Plots and analysis saved to: /Users/luna/Downloads/Transfer_code/Plots
+Plots and analysis saved to: /Users/luna/Downloads/Transfer_code/plots
 ============================================================
 Plot generation completed successfully.
 
@@ -268,7 +268,7 @@ Output files generated:
   ✓ recommended_whole_body_markers_high.csv (18.8 KB)
   ✓ recommended_whole_body_markers_median.csv (19.0 KB)
 
-Plot files (in Plots/):
+Plot files (in plots/):
   ✓ ratio_distribution_high.png (74.0 KB)
   ✓ ratio_distribution_high.svg (54.3 KB)
   ✓ ratio_distribution_median.png (74.9 KB)
@@ -356,9 +356,9 @@ python main.py --skip-processing
 python main.py --skip-plots
 
 # Run individual modules separately
-python -m src.data_processing --data-dir Data --output-dir Results
-python -m src.controlled_learning --data-dir Results --output-dir Results
-python -m src.plot_results --data-dir Results --output-dir Results --plots-dir Plots
+python -m src.data_processing --data-dir data --output-dir results
+python -m src.controlled_learning --data-dir results --output-dir results
+python -m src.plot_results --data-dir results --output-dir results --plots-dir plots
 ```
 
 ### Output Interpretation
