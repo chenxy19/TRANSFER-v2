@@ -90,9 +90,6 @@ LITERATURE_POSITIVES = [
 
 # LITERATURE_POSITIVES with immune cells grouped into "immune" tissue
 # This matches the tissue naming convention used in the processed data
-# Generated automatically by run_data_processing() - do not edit manually
-# LITERATURE_POSITIVES with immune cells grouped into "immune" tissue
-# This matches the tissue naming convention used in the processed data
 # Generated automatically by run_data_processing()
 LITERATURE_POSITIVES_GROUPED = [
     ['PECAM1', 'lung', 'endothelial cells', 'LNP'],
