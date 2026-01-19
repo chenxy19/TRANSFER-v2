@@ -71,7 +71,7 @@ Installation typically takes **1-2 minutes** on a standard desktop computer with
 
 ### Demo Dataset
 
-The repository includes a complete demo dataset in the `Data/` directory containing:
+The repository includes a complete demo dataset in the `data/` directory containing:
 
 | File                                  | Description                                              |
 | ------------------------------------- | -------------------------------------------------------- |
@@ -83,6 +83,16 @@ The repository includes a complete demo dataset in the `Data/` directory contain
 | `PanglaoDB_name_match.csv`            | Cell type name mappings for PanglaoDB                    |
 | `common_cells_across_tissues.csv`     | Cell types found across multiple tissues, which were treated as a single cell type                 |
 | `uniprot_subcellular_localization.csv`     | The subcellular localization annotation from Uniprot             |
+
+### Required Data Files
+
+**Note:** The following files are required but not included in the GitHub repository due to size limitations. These should be downloaded during the installation step (see Section 2):
+
+- **`rna_single_cell_type_tissue.tsv`** (638 MB) - Single-cell RNA expression data from Human Protein Atlas
+- **`uniprot_subcellular_localization`** (35 MB) - UniProt subcellular location data
+- **`Cell_marker_Human.xlsx`** - CellMarker database file
+
+For detailed download instructions, see the **Installation Guide** (Section 2, Step 4).
 
 ### Required Data Files
 
